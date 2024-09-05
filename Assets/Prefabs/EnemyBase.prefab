@@ -48,6 +48,7 @@ MonoBehaviour:
   currState: 0
   range: 5
   speed: 1
+  health: 0
 --- !u!61 &6499125778128734573
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -85,7 +86,7 @@ GameObject:
   - component: {fileID: 6499125779464943034}
   - component: {fileID: 6499125779464943035}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
