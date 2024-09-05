@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum EnemyState
 {
-    Idle, Follow, Die
+    Idle, Follow, Attack, Die
 };
 
 public class EnemyController : MonoBehaviour
@@ -16,8 +16,12 @@ public class EnemyController : MonoBehaviour
     public float range;
     public float speed;
     public float health;
+    public float attackingRange;
+    public float coolDown;
 
     private bool dead = false;
+    private bool coolDownAttack = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +36,8 @@ public class EnemyController : MonoBehaviour
         {
             case EnemyState.Idle: Idle(); break;
             case EnemyState.Follow: Follow(); break;
-            case EnemyState.Die: break;
+            case EnemyState.Attack: Attack(); break;
+            case EnemyState.Die: Die(); break;
         }
 
         if (IsPlayerInRange(range) && currState != EnemyState.Die)
@@ -42,6 +47,16 @@ public class EnemyController : MonoBehaviour
         else if (!IsPlayerInRange(range) && currState != EnemyState.Die)
         {
             currState = EnemyState.Idle;
+        }
+
+        if (Vector3.Distance(transform.position, player.transform.position) <= attackingRange)
+        {
+            currState = EnemyState.Attack;
+        }
+
+        if (health <= 0)
+        {
+            currState = EnemyState.Die;
         }
     }
 
@@ -65,7 +80,24 @@ public class EnemyController : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 
-    public void Death()
+    void Attack()
+    {
+        if (!coolDownAttack)
+        {
+            GameController.DamagePlayer(1);
+            StartCoroutine(CoolDown());
+        }
+        
+    }
+
+    private IEnumerator CoolDown()
+    {
+        coolDownAttack = true;
+        yield return new WaitForSeconds(coolDown);
+        coolDownAttack = false;
+    }
+
+    void Die()
     {
         Destroy(gameObject);
     }
