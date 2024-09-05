@@ -17,10 +17,13 @@ public class GameController : MonoBehaviour
 
     private static float fireRate = 0.5f;
 
+    private static float bulletSize = 0.5f;
+
     public static int Health { get => health; set => health = value; }
     public static int MaxHealth { get => maxHealth; set => maxHealth = value; }
     public static float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     public static float FireRate { get => fireRate; set => fireRate = value; }
+    public static float BulletSize { get => bulletSize; set => bulletSize = value; }
 
     private void Awake()
     {
@@ -48,6 +51,21 @@ public class GameController : MonoBehaviour
     {
         health = Mathf.Min(maxHealth, health + healAmount);
         OnPlayerDamaged?.Invoke();
+    }
+
+    public static void MovementSpeedChange(float amount)
+    {
+        movementSpeed += amount;
+    }
+
+    public static void FireRateChange(float amount)
+    {
+        fireRate -= amount;
+    }
+
+    public static void BulletSizeChange(float amount)
+    {
+        BulletSize += amount;
     }
 
     public static void KillPlayer()

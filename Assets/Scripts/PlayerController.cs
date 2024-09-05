@@ -18,11 +18,15 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        transform.localScale = new Vector2(GameController.BulletSize, GameController.BulletSize);
     }
 
     // Update is called once per frame
     void Update()
     {
+        fireDelay = GameController.FireRate;
+        speed = GameController.MovementSpeed;
+
         ProcessInput();
 
         float shootHor = Input.GetAxis("ShootHorizontal");
