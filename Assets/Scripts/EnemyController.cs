@@ -49,10 +49,10 @@ public class EnemyController : MonoBehaviour
             currState = EnemyState.Idle;
         }
 
-        if (Vector3.Distance(transform.position, player.transform.position) <= attackingRange)
-        {
-            currState = EnemyState.Attack;
-        }
+        // if (Vector3.Distance(transform.position, player.transform.position) <= attackingRange)
+        // {
+        //     currState = EnemyState.Attack;
+        // }
 
         if (health <= 0)
         {
@@ -100,5 +100,17 @@ public class EnemyController : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) <= attackingRange)
+            {
+                Debug.Log("Collision");
+                currState = EnemyState.Attack;
+            }
+        }
     }
 }

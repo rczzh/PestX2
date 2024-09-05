@@ -1,5 +1,26 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &19664204888970312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7419709246167246551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c7f232d5bbbae4aa2a5f6053667daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: d62bbdd779862164db8f5b12b2fbc9e0, type: 3}
+  - {fileID: 21300000, guid: 0f157da5914ed81428976347abd510d3, type: 3}
+  - {fileID: 21300000, guid: cc1e136e066768c4fb90f73ee762520c, type: 3}
+  - {fileID: 21300000, guid: 801946f2779d6194ab326b1de33e9a0a, type: 3}
+  - {fileID: 21300000, guid: a30b79502bd40374dbb2b966ac13e782, type: 3}
+  - {fileID: 21300000, guid: eeca94c8758f13d479847de970e614d5, type: 3}
+  animationTime: 0.1
+  loop: 1
 --- !u!1001 &4380192958749447022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 6499125778128734570, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
         type: 3}
       propertyPath: m_Name
-      value: Bat
+      value: Bat Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6499125778128734572, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
         type: 3}
@@ -20,12 +41,12 @@ PrefabInstance:
     - target: {fileID: 6499125778128734572, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.27
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6499125778128734572, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6499125778128734572, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
         type: 3}
@@ -67,11 +88,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6499125778128734573, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499125779464943035, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499125779464943035, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6499125779464943035, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: da5a6de3a272737429e792958d37e199,
+      objectReference: {fileID: 21300000, guid: d62bbdd779862164db8f5b12b2fbc9e0,
         type: 3}
     - target: {fileID: 6499125779464943035, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
         type: 3}
@@ -90,3 +126,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f7921b64d1754c41bb8c8ae6e527ada, type: 3}
+--- !u!1 &7419709246167246551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6499125779464943033, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
+    type: 3}
+  m_PrefabInstance: {fileID: 4380192958749447022}
+  m_PrefabAsset: {fileID: 0}
