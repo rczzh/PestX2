@@ -11,6 +11,10 @@ public class Room : MonoBehaviour
 
     public Vector2Int RoomIndex { get; set; }
 
+    private void Start()
+    {
+    }
+
     public void OpenDoor(Vector2Int direction)
     {
         if (direction == Vector2Int.up)
@@ -28,6 +32,15 @@ public class Room : MonoBehaviour
         if (direction == Vector2Int.right)
         {
             rightDoor.SetActive(true);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            // zeroing on camera
+            CameraController.instance.MoveCamera(new Vector3 ((RoomIndex.x - 5) * 15, (RoomIndex.y - 5) * 9, -10));
         }
     }
 }
