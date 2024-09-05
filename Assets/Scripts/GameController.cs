@@ -19,6 +19,8 @@ public class GameController : MonoBehaviour
 
     private static float bulletSize = 0.5f;
 
+    public List<String> itemsCollected = new List<String>();
+
     public static int Health { get => health; set => health = value; }
     public static int MaxHealth { get => maxHealth; set => maxHealth = value; }
     public static float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
@@ -66,6 +68,16 @@ public class GameController : MonoBehaviour
     public static void BulletSizeChange(float amount)
     {
         BulletSize += amount;
+    }
+
+    public void UpdateItemsCollected(CollectionController item)
+    {
+        itemsCollected.Add(item.item.name);
+
+        if (itemsCollected.Contains("Monkeypox") && itemsCollected.Contains("Vaccine") && itemsCollected.Contains("Steroids"))
+        {
+            FireRateChange(0.25f);
+        }
     }
 
     public static void KillPlayer()

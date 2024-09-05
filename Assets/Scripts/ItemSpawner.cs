@@ -38,10 +38,4 @@ public class ItemSpawner : MonoBehaviour
 
         GameObject selectedItem = Instantiate(items[selectedIndex].gameObject, transform.position, Quaternion.identity) as GameObject;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
