@@ -11,8 +11,8 @@ public class CameraController : MonoBehaviour
     public Vector3 targetPos;
     public Vector3 currentPos;
 
-    private float cameraXOffset = 0.5f;
-    private float cameraYOffset = 0.5f;
+    private float cameraXOffset = .5f;
+    private float cameraYOffset = .5f;
 
     private void Awake()
     {

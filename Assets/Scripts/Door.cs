@@ -5,8 +5,8 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     private GameObject player;
-    private float widthOffset = 2.25f;
-    private float heightOffset = 2.25f;
+    private float widthOffset = 3.75f;
+    private float heightOffset = 3.75f;
 
     public enum DoorType
     {

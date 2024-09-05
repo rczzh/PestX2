@@ -40,7 +40,7 @@ public class Room : MonoBehaviour
         if (collision.tag == "Player")
         {
             // zeroing on camera
-            CameraController.instance.MoveCamera(new Vector3 ((RoomIndex.x - 5) * 15, (RoomIndex.y - 5) * 9, -10));
+            CameraController.instance.MoveCamera(new Vector3 ((RoomIndex.x - 5) * 17, (RoomIndex.y - 5) * 11, -10));
         }
     }
 }
