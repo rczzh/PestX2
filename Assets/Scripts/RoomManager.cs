@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    [SerializeField] GameObject roomPrefab;
+    [SerializeField] GameObject bossRoomPrefab;
+    [SerializeField] GameObject startRoomPrefab;
+    [SerializeField] List<GameObject> roomPrefabList;
     [SerializeField] private int maxRooms = 15;
-    [SerializeField] private int minRooms = 10;
+    [SerializeField] private int minRooms = 15;
 
     int roomWidth = 17;
     int roomHeight = 11;
@@ -63,7 +65,7 @@ public class RoomManager : MonoBehaviour
         int y = roomIndex.y;
         roomGrid[x, y] = 1;
         roomCount++;
-        var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        var initialRoom = Instantiate(startRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         initialRoom.name = $"Room-{roomCount}";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
         roomObjects.Add(initialRoom);
@@ -100,9 +102,19 @@ public class RoomManager : MonoBehaviour
         roomGrid[x, y] = 1;
         roomCount++;
 
-        //boss room spawning
+        GameObject newRoom;
+        //boss room
+        if(roomCount == maxRooms)
+        {
+            newRoom = Instantiate(bossRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        }
+        //normal rooms
+        else
+        {
+            var index = Random.Range(0, roomPrefabList.Count);
+            newRoom = Instantiate(roomPrefabList[index], GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        }
 
-        var newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
         roomObjects.Add(newRoom);
