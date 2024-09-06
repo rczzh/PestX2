@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+public class UIMenues : MonoBehaviour
 {
     public static bool gameIsPaused = false;
+    public bool playerIsDead = false;
 
     public GameObject pauseMenuUI;
+    public GameObject deathMenuUI;
+    public GameObject victoryMenuUI;
 
     // Update is called once per frame
     void Update()
     {
+        // pause
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
@@ -22,6 +26,13 @@ public class PauseMenu : MonoBehaviour
             {
                 Pause();
             }
+        }
+
+        // death
+        if (playerIsDead == true)
+        {
+            deathMenuUI.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
@@ -42,5 +53,13 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("StartingScene");
+    }
+
+    public void Restart()
+    {
+        playerIsDead = false;
+        // resumes the game
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Game");
     }
 }

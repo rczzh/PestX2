@@ -49,10 +49,10 @@ public class EnemyController : MonoBehaviour
             currState = EnemyState.Idle;
         }
 
-        // if (Vector3.Distance(transform.position, player.transform.position) <= attackingRange)
-        // {
-        //     currState = EnemyState.Attack;
-        // }
+        if (Vector3.Distance(transform.position, player.transform.position) <= attackingRange)
+        {
+            currState = EnemyState.Attack;
+        }
 
         if (health <= 0)
         {

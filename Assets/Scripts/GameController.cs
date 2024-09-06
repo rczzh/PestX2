@@ -1,15 +1,18 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
+    
     public static event Action OnPlayerDamaged;
     public static event Action OnPlayerDeath;
 
-    private static int health = 6;
+    private static int health = 2;
 
     private static int maxHealth = 6;
 
@@ -82,6 +85,7 @@ public class GameController : MonoBehaviour
 
     public static void KillPlayer()
     {
-
+        print("dead");
+        GameController.instance.transform.GetComponent<UIMenues>().playerIsDead = true;
     }
 }
