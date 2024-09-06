@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
+    public Animator animator;
+
     public float speed;
     new Rigidbody2D rigidbody;
     private Vector2 moveDirection;
@@ -27,10 +29,19 @@ public class PlayerController : MonoBehaviour
         fireDelay = GameController.FireRate;
         speed = GameController.MovementSpeed;
 
-        ProcessInput();
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        moveDirection = new Vector2(horizontal, vertical).normalized;
 
-        float shootHor = Input.GetAxis("ShootHorizontal");
-        float shootVert = Input.GetAxis("ShootVertical");
+        animator.SetFloat("Horizontal", horizontal);
+        animator.SetFloat("Vertical", vertical); ;
+        animator.SetFloat("Speed", moveDirection.sqrMagnitude);
+
+        float shootHor = Input.GetAxisRaw("ShootHorizontal");
+        float shootVert = Input.GetAxisRaw("ShootVertical");
+
+        //animator.SetFloat("Horizontal", shootHor);
+        //animator.SetFloat("Vertical", shootVert);
 
         if ((shootHor != 0 || shootVert != 0) && Time.time > lastFire + fireDelay)
         {
@@ -42,13 +53,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-    }
-
-    void ProcessInput()
-    {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        moveDirection = new Vector2(horizontal, vertical).normalized;
     }
 
     void Move()
