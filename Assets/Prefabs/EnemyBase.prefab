@@ -77,7 +77,8 @@ MonoBehaviour:
   speed: 1
   health: 1
   attackingRange: 1.5
-  coolDown: 0
+  coolDown: 1
+  isBoss: 0
 --- !u!50 &-4448414567444184679
 Rigidbody2D:
   serializedVersion: 4

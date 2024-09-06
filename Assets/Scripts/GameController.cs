@@ -8,11 +8,13 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
-    
+
     public static event Action OnPlayerDamaged;
     public static event Action OnPlayerDeath;
 
-    private static int health = 2;
+    private static int currentLevel = 1;
+
+    private static int health = 6;
 
     private static int maxHealth = 6;
 
@@ -33,12 +35,21 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
+        // reset player
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        health = 6;
+
+        maxHealth = 6;
+
+        movementSpeed = 5;
+
+        fireRate = 0.5f;
+
+        bulletSize = 0.5f;
+
+        currentLevel = 1;
+
+        itemsCollected = new List<String>();
     }
 
     public static void DamagePlayer(int damage)
@@ -77,15 +88,41 @@ public class GameController : MonoBehaviour
     {
         itemsCollected.Add(item.item.name);
 
-        if (itemsCollected.Contains("Monkeypox") && itemsCollected.Contains("Vaccine") && itemsCollected.Contains("Steroids"))
+        //if (itemsCollected.Contains("Monkeypox") && itemsCollected.Contains("Vaccine") && itemsCollected.Contains("Steroids"))
+        //{
+        //    FireRateChange(0.25f);
+        //}
+    }
+
+    public void NextLevel()
+    {
+        currentLevel++;
+        if (currentLevel > 3)
         {
-            FireRateChange(0.25f);
+            print("Victory");
+        } 
+        else
+        {
+            StartCoroutine(Reset());
         }
+        
+    }
+
+    private IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(1);
+
+        // restart level
+        GameObject roomManager = GameObject.FindGameObjectWithTag("RoomManager");
+        roomManager.GetComponent<RoomManager>().RegenerateRooms();
+        // respawn player
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = new Vector2(0 + 0.5f, 0 + 0.5f);
+        CameraController.instance.ResetCamera();
     }
 
     public static void KillPlayer()
     {
-        print("dead");
         GameController.instance.transform.GetComponent<UIMenues>().playerIsDead = true;
     }
 }

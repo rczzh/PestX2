@@ -133,10 +133,10 @@ GameObject:
   - component: {fileID: 18595929}
   m_Layer: 0
   m_Name: RoomManager
-  m_TagString: Untagged
+  m_TagString: RoomManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &18595929
 MonoBehaviour:
@@ -150,14 +150,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7facb01993e1743918c24ec4ff46f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossRoomPrefab: {fileID: 7678571163313247196, guid: aaf3192d0d9d59e4cb6546627a636478,
+  bossPrefab: {fileID: 6499125778128734570, guid: 3d5dbbd2af0788f41abc71857dd7f7d4,
     type: 3}
-  startRoomPrefab: {fileID: 7678571163313247196, guid: aaf3192d0d9d59e4cb6546627a636478,
-    type: 3}
-  roomPrefabList:
+  startRoomPrefabs:
   - {fileID: 7678571163313247196, guid: aaf3192d0d9d59e4cb6546627a636478, type: 3}
-  maxRooms: 10
-  minRooms: 7
+  - {fileID: 7678571163313247196, guid: 77f5f5b92a248544f922ab875475db57, type: 3}
+  - {fileID: 7678571163313247196, guid: f7b43ae2b9249094dbee10359a95e1bb, type: 3}
+  bossRoomPrefabs:
+  - {fileID: 7678571163313247196, guid: 0704216edc98cf244accabae43c32364, type: 3}
+  - {fileID: 7678571163313247196, guid: 77f5f5b92a248544f922ab875475db57, type: 3}
+  - {fileID: 7678571163313247196, guid: f7b43ae2b9249094dbee10359a95e1bb, type: 3}
+  sewersPrefabList:
+  - {fileID: 4550333385930156885, guid: cdce457a5e0a71342984c9ef3221bf97, type: 3}
+  - {fileID: 866227141676851398, guid: 52f70095c6514fd47b418987d93683fd, type: 3}
+  - {fileID: 2737249919066843319, guid: 964594af0c5cb1b48a673ba643432fd6, type: 3}
+  backAlleyPrefabList:
+  - {fileID: 8900511570653770956, guid: 717e702c9eb4084469f0bf510c958350, type: 3}
+  - {fileID: 4099536186103350540, guid: 760c8478ca0862a46b6efa37d6c08c0f, type: 3}
+  - {fileID: 6355926664008508181, guid: f7c9384390cd8a4439b46c25389802a5, type: 3}
+  chemPlantPrefabList:
+  - {fileID: 7993322512724795428, guid: e9da8ca6d3ec3bb40ab642b9683a2393, type: 3}
+  - {fileID: 7706167822237649189, guid: 1166c0048fc8b7542ad27444a853ee17, type: 3}
+  - {fileID: 4315967119735534502, guid: 29fe063fe2b4d684e89f12c221421974, type: 3}
+  maxRooms: 5
+  minRooms: 5
 --- !u!4 &18595930
 Transform:
   m_ObjectHideFlags: 0

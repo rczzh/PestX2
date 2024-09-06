@@ -35,6 +35,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6499125778128734571, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
+        type: 3}
+      propertyPath: attackingRange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6499125778128734572, guid: 1f7921b64d1754c41bb8c8ae6e527ada,
         type: 3}
       propertyPath: m_RootOrder

@@ -10,6 +10,7 @@ public enum EnemyState
 public class EnemyController : MonoBehaviour
 {
     GameObject player;
+    GameObject roomManager;
 
     public EnemyState currState = EnemyState.Idle;
 
@@ -19,6 +20,8 @@ public class EnemyController : MonoBehaviour
     public float attackingRange;
     public float coolDown;
 
+    public bool isBoss;
+
     private bool dead = false;
     private bool coolDownAttack = false;
 
@@ -27,6 +30,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        roomManager = GameObject.FindGameObjectWithTag("RoomManager");
     }
 
     // Update is called once per frame
@@ -99,6 +103,11 @@ public class EnemyController : MonoBehaviour
 
     void Die()
     {
+        if (isBoss)
+        {
+            GameController.instance.NextLevel();
+        }
+
         Destroy(gameObject);
     }
 

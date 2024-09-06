@@ -43,4 +43,9 @@ public class CameraController : MonoBehaviour
     {
         targetPos = new Vector3(pos.x + cameraXOffset, pos.y + cameraYOffset, pos.z);
     }
+
+    public void ResetCamera()
+    {
+        transform.position = new Vector3(0.5f, 0.5f, -10);
+    }
 }

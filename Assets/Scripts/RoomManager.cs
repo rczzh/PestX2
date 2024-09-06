@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    [SerializeField] GameObject bossRoomPrefab;
-    [SerializeField] GameObject startRoomPrefab;
-    [SerializeField] List<GameObject> roomPrefabList;
+    private int currentLevel = 1;
+
+    [SerializeField] GameObject bossPrefab;
+
+    [SerializeField] GameObject[] startRoomPrefabs;
+    [SerializeField] GameObject[] bossRoomPrefabs;
+
+    [SerializeField] GameObject[] sewersPrefabList;
+    [SerializeField] GameObject[] backAlleyPrefabList;
+    [SerializeField] GameObject[] chemPlantPrefabList;
+
+    //[SerializeField] List<GameObject> roomPrefabList;
     [SerializeField] private int maxRooms = 15;
     [SerializeField] private int minRooms = 15;
 
@@ -24,6 +33,7 @@ public class RoomManager : MonoBehaviour
     private float offSetX = 0.5f, offSetY = 0.5f;
 
     private bool generationComplete = false;
+    private bool bossSpawned = false;
 
     private void Start()
     {
@@ -48,13 +58,14 @@ public class RoomManager : MonoBehaviour
             TryGenerateRoom(new Vector2Int(gridX, gridY + 1));
             TryGenerateRoom(new Vector2Int(gridX, gridY - 1));
         }
-        else if (roomCount < minRooms)
+        else if (roomCount < minRooms && !bossSpawned)
         {
             RegenerateRooms();
         }
         else if (!generationComplete)
         {
             generationComplete = true;
+            currentLevel++;
         }
     }
 
@@ -65,7 +76,7 @@ public class RoomManager : MonoBehaviour
         int y = roomIndex.y;
         roomGrid[x, y] = 1;
         roomCount++;
-        var initialRoom = Instantiate(startRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        var initialRoom = Instantiate(startRoomPrefabs[currentLevel - 1], GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         initialRoom.name = $"Room-{roomCount}";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
         roomObjects.Add(initialRoom);
@@ -75,6 +86,7 @@ public class RoomManager : MonoBehaviour
     {
         int x = roomIndex.x;
         int y = roomIndex.y;
+        GameObject newRoom;
 
         if (roomGrid[x, y] != 0)
         {
@@ -102,17 +114,38 @@ public class RoomManager : MonoBehaviour
         roomGrid[x, y] = 1;
         roomCount++;
 
-        GameObject newRoom;
         //boss room
         if(roomCount == maxRooms)
         {
-            newRoom = Instantiate(bossRoomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+            newRoom = Instantiate(bossRoomPrefabs[currentLevel - 1], GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+
+            // create boss
+            var bossPos = GetPositionFromGridIndex(roomIndex);       
+            Instantiate(bossPrefab, bossPos + new Vector3(offSetX, offSetY), Quaternion.identity);
+            bossSpawned = true;
         }
         //normal rooms
         else
         {
-            var index = Random.Range(0, roomPrefabList.Count);
-            newRoom = Instantiate(roomPrefabList[index], GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+            var index = Random.Range(0, sewersPrefabList.Length);
+            //sewers
+            if (currentLevel == 1)
+            {
+                newRoom = Instantiate(sewersPrefabList[index], GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+            }
+            else if (currentLevel == 2)
+            {
+                newRoom = Instantiate(backAlleyPrefabList[index], GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+            }
+            else if (currentLevel == 3)
+            {
+                newRoom = Instantiate(chemPlantPrefabList[index], GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+            }
+            else
+            {
+                // fail safe room
+                newRoom = Instantiate(startRoomPrefabs[0], GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+            }
         }
 
         newRoom.GetComponent<Room>().RoomIndex = roomIndex;
@@ -120,17 +153,17 @@ public class RoomManager : MonoBehaviour
         roomObjects.Add(newRoom);
 
         OpenDoors(newRoom, x, y);
-
         return true;
     }
 
-    private void RegenerateRooms()
+    public void RegenerateRooms()
     {
         roomObjects.ForEach(Destroy);
         roomObjects.Clear();
         roomGrid = new int[gridSizeX, gridSizeX];
         roomQueue.Clear();
         roomCount = 0;
+        bossSpawned = false;
         generationComplete = false;
 
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
