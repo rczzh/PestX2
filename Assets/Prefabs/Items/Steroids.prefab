@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c6c3adbcc36f34d9a06541329a8a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemCard: {fileID: 4680515673722126592, guid: d6a567d1f59f9354196db580f5b30cef,
+    type: 3}
   item:
     name: Steroids
     description: Roid Rage

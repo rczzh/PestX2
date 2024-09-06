@@ -12,6 +12,7 @@ public class Item
 
 public class CollectionController : MonoBehaviour
 {
+    public GameObject itemCard;
     public Item item;
     public int healthChange;
     public float movementSpeedChange;
@@ -23,12 +24,6 @@ public class CollectionController : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = item.itemImage;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player") {
@@ -37,6 +32,15 @@ public class CollectionController : MonoBehaviour
             GameController.MovementSpeedChange(movementSpeedChange);
             GameController.FireRateChange(fireRateChange);
             GameController.BulletSizeChange(bulletSizeChange);
+
+            //spawn item card
+            Vector2 pos = Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 0.5f));
+            var card = Instantiate(itemCard, pos, Quaternion.identity);
+            var itemName = card.transform.GetChild(0).GetComponent<TextMesh>();
+            itemName.text = item.name;
+            var itemDesc = card.transform.GetChild(1).GetComponent<TextMesh>();
+            itemDesc.text = item.description;
+
             Destroy(gameObject);
         }
     }
