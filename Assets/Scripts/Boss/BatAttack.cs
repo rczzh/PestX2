@@ -26,6 +26,10 @@ public class BatAttack : MonoBehaviour
         print(gameObject.transform.position);
         GameObject bullet = Instantiate(enemyBulletPrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
         bullet.GetComponent<EnemyBullet>().bulletSpeed = bulletSpeed;
-        bullet.transform.rotation = transform.rotation;
+
+        //targets player
+        Vector3 vectorToPlayer = gameObject.transform.position - player.transform.position;
+        Vector3 rotateVectorToPlayer = Quaternion.Euler(0, 0, 90) * vectorToPlayer;
+        bullet.transform.rotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotateVectorToPlayer);
     }
 }

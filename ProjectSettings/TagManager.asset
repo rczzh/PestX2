@@ -9,6 +9,8 @@ TagManager:
   - RoomManager
   - Item
   - AudioController
+  - Boss
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

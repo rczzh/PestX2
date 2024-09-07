@@ -131,5 +131,5 @@ MonoBehaviour:
       type: 3}
   healthChange: 0
   movementSpeedChange: 0
-  fireRateChange: 1
+  fireRateChange: 0.1
   bulletSizeChange: 0

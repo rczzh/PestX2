@@ -29,14 +29,13 @@ public class BossMove : StateMachineBehaviour
         Vector2 targetPos = new Vector2(player.transform.position.x, player.transform.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, targetPos, speed * Time.fixedDeltaTime);
 
-        if (Vector3.Distance(player.transform.position, rb.position) <= enemyRange)
-        {
-            rb.MovePosition(newPos);
-        }
-        
         if (Vector2.Distance(player.transform.position, rb.position) <= attackRange)
         {
             animator.SetTrigger("Attack");
+        }
+        else if (Vector3.Distance(player.transform.position, rb.position) <= enemyRange)
+        {
+            rb.MovePosition(newPos);
         }
     }
 
