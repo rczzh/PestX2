@@ -10,6 +10,7 @@ public class RoomManager : MonoBehaviour
 
     [SerializeField] GameObject[] startRoomPrefabs;
     [SerializeField] GameObject[] bossRoomPrefabs;
+    [SerializeField] GameObject[] itemRoomPrefabs;
 
     [SerializeField] GameObject[] sewersPrefabList;
     [SerializeField] GameObject[] backAlleyPrefabList;
@@ -34,6 +35,7 @@ public class RoomManager : MonoBehaviour
 
     private bool generationComplete = false;
     private bool bossSpawned = false;
+    private bool itemSpawned = false;
 
     private void Start()
     {
@@ -58,7 +60,7 @@ public class RoomManager : MonoBehaviour
             TryGenerateRoom(new Vector2Int(gridX, gridY + 1));
             TryGenerateRoom(new Vector2Int(gridX, gridY - 1));
         }
-        else if (roomCount < minRooms && !bossSpawned)
+        else if (roomCount < minRooms && (!bossSpawned || !itemSpawned))
         {
             RegenerateRooms();
         }
@@ -124,6 +126,12 @@ public class RoomManager : MonoBehaviour
             Instantiate(bossPrefab, bossPos + new Vector3(offSetX, offSetY), Quaternion.identity);
             bossSpawned = true;
         }
+        //item room
+        else if(roomCount == (int)(Mathf.Floor(minRooms / 2)))
+        {
+            newRoom = Instantiate(itemRoomPrefabs[currentLevel - 1], GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+            itemSpawned = true;
+        }
         //normal rooms
         else
         {
@@ -165,6 +173,9 @@ public class RoomManager : MonoBehaviour
         roomCount = 0;
         bossSpawned = false;
         generationComplete = false;
+
+        itemSpawned = false;
+        ClearAllItems();
 
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
@@ -251,6 +262,17 @@ public class RoomManager : MonoBehaviour
                 
                 Gizmos.DrawWireCube((position + new Vector3(offSetX, offSetY)), new Vector3(roomWidth, roomHeight, 1));
             }
+        }
+    }
+
+    private void ClearAllItems()
+    {
+        GameObject[] extraItems;
+        extraItems = GameObject.FindGameObjectsWithTag("Item");
+
+        foreach(GameObject item in extraItems)
+        {
+            Destroy(item.gameObject);
         }
     }
 }

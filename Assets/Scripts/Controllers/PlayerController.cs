@@ -16,6 +16,14 @@ public class PlayerController : MonoBehaviour
     private float lastFire;
     public float fireDelay;
 
+    AudioController audioController;
+
+    private void Awake()
+    {
+        audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
     void Shoot(float x, float y)
     {
+        audioController.PlaySFX(audioController.bulletFire);
         GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
         bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(

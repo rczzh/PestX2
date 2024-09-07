@@ -18,6 +18,14 @@ public class CollectionController : MonoBehaviour
     public float movementSpeedChange;
     public float fireRateChange;
     public float bulletSizeChange;
+
+    AudioController audioController;
+
+    private void Awake()
+    {
+        audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +35,8 @@ public class CollectionController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player") {
-
+            audioController.PlaySFX(audioController.itemPickUp);
+            
             GameController.HealPlayer(healthChange);
             GameController.MovementSpeedChange(movementSpeedChange);
             GameController.FireRateChange(fireRateChange);

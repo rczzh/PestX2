@@ -5,6 +5,12 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public float lifeTime;
+    AudioController audioController;
+
+    private void Awake()
+    {
+        audioController = GameObject.FindGameObjectWithTag("AudioController").GetComponent<AudioController>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +34,7 @@ public class BulletController : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
+            audioController.PlaySFX(audioController.bulletHit);
             collision.gameObject.GetComponent<EnemyController>().TakeDamage(1);
             Destroy(gameObject);
         }

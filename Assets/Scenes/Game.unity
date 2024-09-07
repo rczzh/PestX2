@@ -160,6 +160,10 @@ MonoBehaviour:
   - {fileID: 7678571163313247196, guid: 0704216edc98cf244accabae43c32364, type: 3}
   - {fileID: 7678571163313247196, guid: 77f5f5b92a248544f922ab875475db57, type: 3}
   - {fileID: 7678571163313247196, guid: f7b43ae2b9249094dbee10359a95e1bb, type: 3}
+  itemRoomPrefabs:
+  - {fileID: 2583017790334421372, guid: 95e596284c4938140af19b2d2088e0a9, type: 3}
+  - {fileID: 4646635912103868357, guid: a13eeb650c8355b458219b6af2d07528, type: 3}
+  - {fileID: 5231950392342239569, guid: 82488d0dd4b8bda47b9b6b92fcef0eaa, type: 3}
   sewersPrefabList:
   - {fileID: 4550333385930156885, guid: cdce457a5e0a71342984c9ef3221bf97, type: 3}
   - {fileID: 866227141676851398, guid: 52f70095c6514fd47b418987d93683fd, type: 3}
@@ -172,8 +176,8 @@ MonoBehaviour:
   - {fileID: 7993322512724795428, guid: e9da8ca6d3ec3bb40ab642b9683a2393, type: 3}
   - {fileID: 7706167822237649189, guid: 1166c0048fc8b7542ad27444a853ee17, type: 3}
   - {fileID: 4315967119735534502, guid: 29fe063fe2b4d684e89f12c221421974, type: 3}
-  maxRooms: 5
-  minRooms: 5
+  maxRooms: 8
+  minRooms: 8
 --- !u!4 &18595930
 Transform:
   m_ObjectHideFlags: 0
@@ -186,7 +190,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &56553591
 GameObject:
@@ -317,7 +321,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &440496505
 Rigidbody2D:
@@ -769,7 +773,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &914522965
 Animator:
@@ -977,59 +981,6 @@ RectTransform:
   m_AnchoredPosition: {x: -275, y: -175}
   m_SizeDelta: {x: 450, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1075105233
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1075105234}
-  - component: {fileID: 1075105235}
-  m_Layer: 0
-  m_Name: ItemSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1075105234
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075105233}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.28, y: 0.48, z: -0.9206678}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1075105235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075105233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6498845b4b40baf49bf71d92a830957e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - gameObject: {fileID: 99376433129022701, guid: ce636e54d55d858428d8993ecae0f8c6,
-      type: 3}
-    weight: 1
-  - gameObject: {fileID: 99376433129022701, guid: fd3e23a06b259894b9c40a321c4550eb,
-      type: 3}
-    weight: 1
-  - gameObject: {fileID: 99376433129022701, guid: 9b499012b4e586f49b74673e09f00195,
-      type: 3}
-    weight: 1
 --- !u!1 &1181111738
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1280,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1349661453
 MonoBehaviour:
