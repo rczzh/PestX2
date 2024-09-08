@@ -35,7 +35,7 @@ public class BulletController : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             audioController.PlaySFX(audioController.bulletHit);
-            collision.gameObject.GetComponent<EnemyController>().TakeDamage(1);
+            collision.gameObject.GetComponent<EnemyController>().TakeDamage(GameController.Damage);
             Destroy(gameObject);
         }
 
@@ -47,7 +47,7 @@ public class BulletController : MonoBehaviour
         if (collision.tag == "Boss")
         {
             audioController.PlaySFX(audioController.bulletHit);
-            collision.gameObject.GetComponent<Boss>().TakeDamage(1);
+            collision.gameObject.GetComponent<Boss>().TakeDamage(GameController.Damage);
             Destroy(gameObject);
         }
     }

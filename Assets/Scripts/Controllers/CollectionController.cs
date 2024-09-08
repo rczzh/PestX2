@@ -18,6 +18,7 @@ public class CollectionController : MonoBehaviour
     public float movementSpeedChange;
     public float fireRateChange;
     public float bulletSizeChange;
+    public float damageChange;
 
     AudioController audioController;
 
@@ -41,6 +42,7 @@ public class CollectionController : MonoBehaviour
             GameController.MovementSpeedChange(movementSpeedChange);
             GameController.FireRateChange(fireRateChange);
             GameController.BulletSizeChange(bulletSizeChange);
+            GameController.DamageChange(damageChange);
 
             //spawn item card
             Vector2 pos = Camera.main.ViewportToWorldPoint(new Vector2(0.5f, 0.5f));

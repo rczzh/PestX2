@@ -129,7 +129,8 @@ MonoBehaviour:
     description: Roid Rage
     itemImage: {fileID: 6651179008520847730, guid: 570edb70e504afa4697ff4523db08eef,
       type: 3}
-  healthChange: 0
+  healthChange: 1
   movementSpeedChange: 0
-  fireRateChange: 0.1
-  bulletSizeChange: 0
+  fireRateChange: 0
+  bulletSizeChange: 5
+  damageChange: 0

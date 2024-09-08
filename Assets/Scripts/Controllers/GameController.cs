@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
 
     private static float bulletSize = 0.5f;
 
+    private static float damage = 1f;
+
     public List<String> itemsCollected = new List<String>();
 
     public static int Health { get => health; set => health = value; }
@@ -31,6 +33,7 @@ public class GameController : MonoBehaviour
     public static float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     public static float FireRate { get => fireRate; set => fireRate = value; }
     public static float BulletSize { get => bulletSize; set => bulletSize = value; }
+    public static float Damage { get => bulletSize; set => bulletSize = value; }
 
     private void Awake()
     {
@@ -46,6 +49,8 @@ public class GameController : MonoBehaviour
         fireRate = 0.5f;
 
         bulletSize = 0.5f;
+
+        damage = 1f;
 
         currentLevel = 1;
 
@@ -84,14 +89,20 @@ public class GameController : MonoBehaviour
         BulletSize += amount;
     }
 
+    public static void DamageChange(float amount)
+    {
+        Damage += amount;
+    }
+
     public void UpdateItemsCollected(CollectionController item)
     {
         itemsCollected.Add(item.item.name);
 
-        //if (itemsCollected.Contains("Monkeypox") && itemsCollected.Contains("Vaccine") && itemsCollected.Contains("Steroids"))
-        //{
-        //    FireRateChange(0.25f);
-        //}
+        // item synergies
+        if (itemsCollected.Contains("Monkeypox") && itemsCollected.Contains("Vaccine") && itemsCollected.Contains("Steroids"))
+        {
+            FireRateChange(0.1f);
+        }
     }
 
     public void NextLevel()
