@@ -23,7 +23,6 @@ public class BatAttack : MonoBehaviour
 
     public void Attack()
     {
-        print(gameObject.transform.position);
         GameObject bullet = Instantiate(enemyBulletPrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
         bullet.GetComponent<EnemyBullet>().bulletSpeed = bulletSpeed;
 

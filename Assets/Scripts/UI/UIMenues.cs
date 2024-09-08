@@ -7,6 +7,7 @@ public class UIMenues : MonoBehaviour
 {
     public static bool gameIsPaused = false;
     public bool playerIsDead = false;
+    public bool victory = false;
 
     public GameObject pauseMenuUI;
     public GameObject deathMenuUI;
@@ -29,9 +30,15 @@ public class UIMenues : MonoBehaviour
         }
 
         // death
-        if (playerIsDead == true)
+        if (playerIsDead)
         {
             deathMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+        }
+
+        if (victory)
+        {
+            victoryMenuUI.SetActive(true);
             Time.timeScale = 0f;
         }
     }
@@ -58,8 +65,14 @@ public class UIMenues : MonoBehaviour
     public void Restart()
     {
         playerIsDead = false;
+        victory = false;
         // resumes the game
         Time.timeScale = 1f;
         SceneManager.LoadScene("Game");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

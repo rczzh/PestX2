@@ -47,12 +47,16 @@ public class Boss : MonoBehaviour
     public void Die()
     {
         GameController.instance.NextLevel();
-        GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
-        foreach(GameObject bullet in enemyBullets)
-        {
-            Destroy(bullet);
-        }
 
+        GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+        if (enemyBullets != null)
+        {
+            foreach (GameObject bullet in enemyBullets)
+            {
+                Destroy(bullet);
+            }
+        }
+        
         Destroy(gameObject);
     }
 }

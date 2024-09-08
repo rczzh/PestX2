@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
         currentLevel++;
         if (currentLevel > 3)
         {
-            print("Victory");
+            GameController.instance.transform.GetComponent<UIMenues>().victory = true;
         } 
         else
         {

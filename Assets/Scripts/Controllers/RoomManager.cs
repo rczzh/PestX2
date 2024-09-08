@@ -6,8 +6,7 @@ public class RoomManager : MonoBehaviour
 {
     private int currentLevel = 1;
 
-    [SerializeField] GameObject bossPrefab;
-
+    [SerializeField] GameObject[] bossPrefabs;
     [SerializeField] GameObject[] startRoomPrefabs;
     [SerializeField] GameObject[] bossRoomPrefabs;
     [SerializeField] GameObject[] itemRoomPrefabs;
@@ -122,8 +121,8 @@ public class RoomManager : MonoBehaviour
             newRoom = Instantiate(bossRoomPrefabs[currentLevel - 1], GetPositionFromGridIndex(roomIndex), Quaternion.identity);
 
             // create boss
-            var bossPos = GetPositionFromGridIndex(roomIndex);       
-            Instantiate(bossPrefab, bossPos + new Vector3(offSetX, offSetY), Quaternion.identity);
+            var bossPos = GetPositionFromGridIndex(roomIndex);
+            Instantiate(bossPrefabs[currentLevel - 1], bossPos + new Vector3(offSetX, offSetY), Quaternion.identity);
             bossSpawned = true;
         }
         //item room
