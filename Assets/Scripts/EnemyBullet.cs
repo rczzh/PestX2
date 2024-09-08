@@ -27,7 +27,7 @@ public class EnemyBullet : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        transform.position = Movement(-timer);
+        transform.position = Movement(timer);
     }
     IEnumerator DeathDelay()
     {
@@ -36,8 +36,8 @@ public class EnemyBullet : MonoBehaviour
     }
     private Vector2 Movement(float timer)
     {
-        float x = timer * bulletSpeed * transform.right.x;
-        float y = timer * bulletSpeed * transform.right.y;
+        float x = timer * bulletSpeed * -transform.right.x;
+        float y = timer * bulletSpeed * -transform.right.y;
         return new Vector2(x + spawnPoint.x, y + spawnPoint.y);
     }
 
