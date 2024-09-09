@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
     public static float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     public static float FireRate { get => fireRate; set => fireRate = value; }
     public static float BulletSize { get => bulletSize; set => bulletSize = value; }
-    public static float Damage { get => bulletSize; set => bulletSize = value; }
+    public static float Damage { get => damage; set => bulletSize = damage; }
 
     private void Awake()
     {
