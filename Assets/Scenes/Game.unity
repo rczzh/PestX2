@@ -178,8 +178,8 @@ MonoBehaviour:
   - {fileID: 7993322512724795428, guid: e9da8ca6d3ec3bb40ab642b9683a2393, type: 3}
   - {fileID: 7706167822237649189, guid: 1166c0048fc8b7542ad27444a853ee17, type: 3}
   - {fileID: 4315967119735534502, guid: 29fe063fe2b4d684e89f12c221421974, type: 3}
-  maxRooms: 5
-  minRooms: 5
+  maxRooms: 21
+  minRooms: 21
 --- !u!4 &18595930
 Transform:
   m_ObjectHideFlags: 0
@@ -1504,7 +1504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcff876d592e3945b4d217cc2ddca56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victoryUI: {fileID: 0}
   itemsCollected: []
 --- !u!4 &1349661452
 Transform:
@@ -1533,6 +1532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIsDead: 0
+  victory: 0
   pauseMenuUI: {fileID: 1291199940}
   deathMenuUI: {fileID: 1611093080}
   victoryMenuUI: {fileID: 1557549292}
